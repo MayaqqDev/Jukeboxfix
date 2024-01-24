@@ -63,3 +63,13 @@ loom {
         mixinConfig "jukeboxfix-common.mixins.json"
     }
 }
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            groupId = 'dev.mayaqq.Jukeboxfix'
+        }
+    }
+    repositories {}
+}
