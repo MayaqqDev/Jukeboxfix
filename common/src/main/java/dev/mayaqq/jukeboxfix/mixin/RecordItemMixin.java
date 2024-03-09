@@ -10,10 +10,12 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 public class RecordItemMixin {
     @ModifyArg(
             method = "useOn",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/entity/JukeboxBlockEntity;setFirstItem(Lnet/minecraft/world/item/ItemStack;)V"),
-            index = 0
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/JukeboxBlock;setRecord(Lnet/minecraft/world/level/LevelAccessor;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/item/ItemStack;)V"),
+            index = 4
     )
     private ItemStack modifyRecordItem(ItemStack stack) {
-        return stack.copyWithCount(1);
+        ItemStack copy = stack.copy();
+        copy.setCount(1);
+        return copy;
     }
 }
